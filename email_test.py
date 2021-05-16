@@ -72,12 +72,17 @@ for userMail,userFirstName in list_of_email_and_names:
 	video_url = Video(1,audio_url).create_video()
 	print(video_url)
 	gif_output = GIF(video_url,text_script).convertVideoToGifFile()
+	gif_url = "https://buildar.live/images/" + gif_output
 	html_content = t.render(name=userFirstName,
-		gifurl="https://dreal.in/nitco/buy/images/message.gif",
-		videourl=video_url)
+		gifurl=gif_url,
+		videoLink=video_url)
 	mailObj = Mailer(constants.FROM_EMAIL,str(userMail),subject,html_content)
 	mailObj.send_email()
 	
+
+
+### we need to dymacillay upload the gif to a url on our buildar.live server
+### and then give this url to the template
 
 # async call to audio
 # from audio create corresponding video
